@@ -45,7 +45,7 @@ describe('Проверка авторизации', function () {
 
  it('Негативный кейс авторизации', function () {
     cy.get(main_page.email).type(data.login); //Ввели верный логин
-    cy.get(main_page.password).type('iLoveqastudio'); //Ввели неверный пароль
+    cy.get(main_page.password).type('USER_PASSWORD'); //Ввели неверный пароль
     cy.get(main_page.login_button).click(); //Нажал Войти
     cy.get(result_page.title).contains('Такого логина или пароля нет'); //Проверяю, что после авторизации вижу текст
     cy.get(result_page.title).should('be.visible'); //Текст виден пользователю
@@ -53,7 +53,7 @@ describe('Проверка авторизации', function () {
 })
 
 it('Негативный кейс авторизации №2', function () {
-    cy.get(main_page.email).type('german@dolnikov.ru '); //Ввели неверный логин
+    cy.get(main_page.email).type('USER_LOGIN'); //Ввели неверный логин
     cy.get(main_page.password).type(data.password); //Ввели верный пароль
     cy.get(main_page.login_button).click(); //Нажал Войти
     cy.get(result_page.title).contains('Авторизация прошла успешно'); //Проверяю, что после авторизации вижу текст
@@ -62,7 +62,7 @@ it('Негативный кейс авторизации №2', function () {
 })
 
 it('Негативный кейс валидации', function () {
-    cy.get(main_page.email).type('germandolnikov.ru '); //Ввели логин без @
+    cy.get(main_page.email).type('USER_LOGIN'); //Ввели логин без @
     cy.get(main_page.password).type(data.password); //Ввели верный пароль
     cy.get(main_page.login_button).click(); //Нажал Войти
     cy.get(result_page.title).contains('Нужно исправить проблему валидации'); //Проверяю, что после авторизации вижу текст
@@ -71,7 +71,7 @@ it('Негативный кейс валидации', function () {
 })
 
 it('Строчные буквы в логине', function () {
-    cy.get(main_page.email).type('GerMan@Dolnikov.ru'); //Ввели логин строчными буквами
+    cy.get(main_page.email).type('USER_LOGIN'); //Ввели логин строчными буквами
     cy.get(main_page.password).type(data.password); //Ввели верный пароль
     cy.get(main_page.login_button).click(); //Нажал Войти
     cy.get(result_page.title).contains('Авторизация прошла успешно'); //Проверяю, что после авторизации вижу текст
